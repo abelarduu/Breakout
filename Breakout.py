@@ -1,6 +1,6 @@
-########
-# PONG #
-########
+############
+# Breakout #
+############
 import pyxel
 
 class Object:
@@ -33,7 +33,7 @@ class Object:
         
 class Game:
     def __init__(self):
-        pyxel.init(100,100,"Pong")
+        pyxel.init(100,100,"Breakout")
         self.play= False
         #Objetos
         self.player= Object(pyxel.width/2 -19/2,pyxel.height -11,0,8,17,19,8)
