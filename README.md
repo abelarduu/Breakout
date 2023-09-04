@@ -1,6 +1,6 @@
 <div align="center">
 <header>
-<img src="img/icon.gif" type="image/png" alt="Pong Icon">
+<img src="img/icon.gif" type="image/png" alt="Breakout Icon">
 </header>
 
 
@@ -27,7 +27,7 @@
   <h3>Resultado</h3>
   <figure>
     <img src="img/interface.png" type="image/png" alt="Interface do Game" width=270px>
-   <img src="img/Pong.gif" type="image/gif" alt="Game gif" width=270px>
+   <img src="img/Breakout.gif" type="image/gif" alt="Game gif" width=270px>
   </figure>
 </div>
 </div>
