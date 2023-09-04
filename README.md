@@ -3,8 +3,6 @@
 <img src="img/icon.gif" type="image/png" alt="Breakout Icon">
 </header>
 
-
-
 <div>
   <h3>Sobre o projeto</h3>
   <div>
@@ -12,7 +10,7 @@
 
 </div>
 <div>
-  <p>Criando clone do game retro "Pong"</p>
+  <p>Criando clone do game retro "Breakout"</p>
   <p>Criado através da linguagem python, utilizando a interface gráfica da game engine Pyxel.</p>
 </div>
   <p>
