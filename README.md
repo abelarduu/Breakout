@@ -1,6 +1,6 @@
 <div align="center">
 <header>
-<img src="img/icon.gif" type="image/png" alt="Breakout Icon">
+<img src="img/icon.png" type="image/png" alt="Breakout Icon">
 </header>
 
 <div>
