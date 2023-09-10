@@ -24,7 +24,7 @@
 <div>
   <h3>Resultado</h3>
   <figure>
-    <img src="img/interface.png" type="image/png" alt="Interface do Game" width=270px>
+    <img src="img/interface.gif" type="image/gif" alt="Interface do Game" width=270px>
    <img src="img/Breakout.gif" type="image/gif" alt="Game gif" width=270px>
   </figure>
 </div>
