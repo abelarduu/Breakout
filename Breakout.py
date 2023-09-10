@@ -36,36 +36,36 @@ class Game:
         pyxel.init(100,100,"Breakout")
         self.play= False
         #Objetos
-        self.player= Object(pyxel.width/2 -19/2,pyxel.height -11,0,8,17,19,8)
-        self.ball= Object(pyxel.width/2 -3, pyxel.height -20, 0, 8,26, 6, 6)
+        self.player= Object(pyxel.width/2 -19/2,pyxel.height -11,0,8,30,19,8)
+        self.ball= Object(pyxel.width/2 -3, pyxel.height -20, 0, 8,39, 6, 6)
         self.ball.eixX1= True
         self.ball.eixX2= False
         self.ball.eixY1= True
         self.ball.eixY2= False
 
-        self.block1= Object(9,10,0,8,8,14,8)
-        self.block2= Object(26,10,0,23,8,14,8)
-        self.block3= Object(43,10,0,38,8,14,8)
-        self.block4= Object(60,10,0,53,8,14,8)
-        self.block5= Object(77,10,0,68,8,14,8)
+        self.block1= Object(9,10,0,8,21,14,8)
+        self.block2= Object(26,10,0,23,21,14,8)
+        self.block3= Object(43,10,0,38,21,14,8)
+        self.block4= Object(60,10,0,53,21,14,8)
+        self.block5= Object(77,10,0,68,21,14,8)
         
-        self.block6= Object(9,20,0,8,8,14,8)
-        self.block7= Object(26,20,0,23,8,14,8)
-        self.block8= Object(43,20,0,38,8,14,8)
-        self.block9= Object(60,20,0,53,8,14,8)
-        self.block10= Object(77,20,0,68,8,14,8)    
+        self.block6= Object(9,20,0,8,21,14,8)
+        self.block7= Object(26,20,0,23,21,14,8)
+        self.block8= Object(43,20,0,38,21,14,8)
+        self.block9= Object(60,20,0,53,21,14,8)
+        self.block10= Object(77,20,0,68,21,14,8)    
         
-        self.block11= Object(9,30,0,8,8,14,8)
-        self.block12= Object(26,30,0,23,8,14,8)
-        self.block13= Object(43,30,0,38,8,14,8)
-        self.block14= Object(60,30,0,53,8,14,8)
-        self.block15= Object(77,30,0,68,8,14,8)
+        self.block11= Object(9,30,0,8,21,14,8)
+        self.block12= Object(26,30,0,23,21,14,8)
+        self.block13= Object(43,30,0,38,21,14,8)
+        self.block14= Object(60,30,0,53,21,14,8)
+        self.block15= Object(77,30,0,68,21,14,8)
 
-        self.block16= Object(9,40,0,8,8,14,8)
-        self.block17= Object(26,40,0,23,8,14,8)
-        self.block18= Object(43,40,0,38,8,14,8)
-        self.block19= Object(60,40,0,53,8,14,8)
-        self.block20= Object(77,40,0,68,8,14,8)
+        self.block16= Object(9,40,0,8,21,14,8)
+        self.block17= Object(26,40,0,23,21,14,8)
+        self.block18= Object(43,40,0,38,21,14,8)
+        self.block19= Object(60,40,0,53,21,14,8)
+        self.block20= Object(77,40,0,68,21,14,8)
         self.listBlock= [self.block1, self.block2, self.block3, self.block4, self.block5,
                          self.block6, self.block7, self.block8, self.block9, self.block10,
                          self.block11, self.block12, self.block13, self.block14, self.block15,
@@ -89,7 +89,7 @@ class Game:
 
     def update(self):
         if self.play:
-            self.player.move(cond1= pyxel.btn(pyxel.KEY_LEFT), cond2= pyxel.btn(pyxel.KEY_RIGHT))
+            self.player.move(cond1= pyxel.btn(pyxel.KEY_LEFT) or pyxel.btn(pyxel.KEY_A), cond2= pyxel.btn(pyxel.KEY_RIGHT) or pyxel.btn(pyxel.KEY_D))
             self.ball.move(cond1= self.ball.eixX1, cond2= self.ball.eixX2,cond3= self.ball.eixY1, cond4= self.ball.eixY2)
 
             if self.ball.x <= 8:
@@ -121,7 +121,7 @@ class Game:
                     if block.imgx== 53: self.player.scores+=20
                     if block.imgx== 68: self.player.scores+=30
         else:
-            if pyxel.btn(pyxel.KEY_R):
+            if pyxel.btn(pyxel.KEY_SPACE) or pyxel.btn(pyxel.GAMEPAD1_BUTTON_START):
                 self.play=True
                         
     def draw(self):
@@ -129,12 +129,17 @@ class Game:
         pyxel.blt(5,0,0,7,0,100,7)
         pyxel.blt(0,0,0,0,0,7,100)
         pyxel.blt(pyxel.height-7,0,0,0,0,-7,100)
-        pyxel.text(pyxel.width/2 - len(str(self.player.scores))/2 *4, 1, str(self.player.scores),7)
         
         self.ball.draw()
         self.player.draw()
         for block in self.listBlock:
             block.draw()
+         
+        if self.play: 
+            pyxel.text(pyxel.width/2 - len(str(self.player.scores))/2 * pyxel.FONT_WIDTH, 1, str(self.player.scores),7)
+        else:
+            pyxel.blt(pyxel.width/2 - 63/2,pyxel.height/2 ,0,8,8,63,12)
+            pyxel.text(pyxel.width/2 -len("press start")/2 * pyxel.FONT_WIDTH, pyxel.height/2 +13, "press start", pyxel.frame_count %16)
 
 if __name__ == "__main__":
     Game()
