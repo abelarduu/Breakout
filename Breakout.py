@@ -26,7 +26,7 @@ class Object:
                 return True
              
     def destroy(self):
-        self.y= -16
+        self.y=(self.y-50)
 
     def draw(self):
         pyxel.blt(self.x, self.y, self.img, self.imgx, self.imgy, self.w, self.h)
@@ -73,7 +73,17 @@ class Game:
         
         pyxel.load("resources/Breakout.pyxres")
         pyxel.run(self.update, self.draw)
-    
+        
+    def reset(self):
+        self.ball.x, self.ball.y= pyxel.width/2 -3, pyxel.height -20
+        self.player.x= pyxel.width/2 -19/2
+        self.player.scores= 0
+        self.play= False
+
+        for block in self.listBlock:
+            if block.y< 0:
+                block.y = (block.y+50)
+        
     def flip_ball(self, obj):
         if self.ball.x< obj.x + obj.w/2-3:
             self.ball.eixX1=True
@@ -120,9 +130,13 @@ class Game:
                     if block.imgx== 38: self.player.scores+=15
                     if block.imgx== 53: self.player.scores+=20
                     if block.imgx== 68: self.player.scores+=30
+                        
+            if pyxel.btn(pyxel.KEY_R):
+                self.reset()
         else:
             if pyxel.btn(pyxel.KEY_SPACE) or pyxel.btn(pyxel.GAMEPAD1_BUTTON_START):
                 self.play=True
+                        
                         
     def draw(self):
         pyxel.cls(1)
