@@ -49,22 +49,20 @@ class Game:
         pyxel.run(self.update, self.draw)
 
     def blocks_creator(self):
-        x=9-17
-        y=10-10
-        imgx=8
+        x=-8
+        y=0
+        imgx=-7
         for Y in range(4):
-            x=9-17
-            imgx=8-15
-            if y < 40:
-                y+= 10
-                
+            x=-8
+            imgx=-7
+            y+= 10
+            
             for X in range(5):
-                if x<77 and imgx <68:
-                    x+= 17
-                    imgx+= 15
-                
+                x+= 17
+                imgx+= 15
+
                 block=Object(x,y,0,imgx,21,14,8)
-                self.listBlock.append(block)
+                self.listBlock.append(Object(x,y,0,imgx,21,14,8))
 
     def reset(self):
         self.ball.x, self.ball.y= pyxel.width/2 -3, pyxel.height -20
