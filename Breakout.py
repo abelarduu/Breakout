@@ -114,11 +114,9 @@ class Game:
                     self.ball.eixY1=False
                     self.flip_ball(block)
                     block.destroy()
-                    if block.imgx== 8: self.player.scores+=5
-                    if block.imgx== 23: self.player.scores+=10
-                    if block.imgx== 38: self.player.scores+=15
-                    if block.imgx== 53: self.player.scores+=20
-                    if block.imgx== 68: self.player.scores+=30
+                    for n in range(6):
+                        if block.imgx == (8-15)+(15*n):
+                            self.player.scores+= (5*n)
                         
             if pyxel.btn(pyxel.KEY_R):
                 self.reset()
