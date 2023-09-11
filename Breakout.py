@@ -24,7 +24,6 @@ class Object:
         if self.y+ self.h >= obj.y and self.y <= obj.y +obj.h:
             if self.x + self.w >= obj.x and self.x<= obj.x + obj.w:
                 return True
-             
     def destroy(self):
         self.y=(self.y-50)
 
@@ -43,37 +42,30 @@ class Game:
         self.ball.eixY1= True
         self.ball.eixY2= False
 
-        self.block1= Object(9,10,0,8,21,14,8)
-        self.block2= Object(26,10,0,23,21,14,8)
-        self.block3= Object(43,10,0,38,21,14,8)
-        self.block4= Object(60,10,0,53,21,14,8)
-        self.block5= Object(77,10,0,68,21,14,8)
-        
-        self.block6= Object(9,20,0,8,21,14,8)
-        self.block7= Object(26,20,0,23,21,14,8)
-        self.block8= Object(43,20,0,38,21,14,8)
-        self.block9= Object(60,20,0,53,21,14,8)
-        self.block10= Object(77,20,0,68,21,14,8)    
-        
-        self.block11= Object(9,30,0,8,21,14,8)
-        self.block12= Object(26,30,0,23,21,14,8)
-        self.block13= Object(43,30,0,38,21,14,8)
-        self.block14= Object(60,30,0,53,21,14,8)
-        self.block15= Object(77,30,0,68,21,14,8)
+        self.listBlock = []
+        self.blocks_creator()
 
-        self.block16= Object(9,40,0,8,21,14,8)
-        self.block17= Object(26,40,0,23,21,14,8)
-        self.block18= Object(43,40,0,38,21,14,8)
-        self.block19= Object(60,40,0,53,21,14,8)
-        self.block20= Object(77,40,0,68,21,14,8)
-        self.listBlock= [self.block1, self.block2, self.block3, self.block4, self.block5,
-                         self.block6, self.block7, self.block8, self.block9, self.block10,
-                         self.block11, self.block12, self.block13, self.block14, self.block15,
-                         self.block16, self.block17, self.block18, self.block19, self.block20]
-        
         pyxel.load("resources/Breakout.pyxres")
         pyxel.run(self.update, self.draw)
-        
+
+    def blocks_creator(self):
+        x=9-17
+        y=10-10
+        imgx=8
+        for Y in range(4):
+            x=9-17
+            imgx=8-15
+            if y < 40:
+                y+= 10
+                
+            for X in range(5):
+                if x<77 and imgx <68:
+                    x+= 17
+                    imgx+= 15
+                
+                block=Object(x,y,0,imgx,21,14,8)
+                self.listBlock.append(block)
+
     def reset(self):
         self.ball.x, self.ball.y= pyxel.width/2 -3, pyxel.height -20
         self.player.x= pyxel.width/2 -19/2
