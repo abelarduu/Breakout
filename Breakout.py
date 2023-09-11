@@ -60,7 +60,6 @@ class Game:
             for X in range(5):
                 x+= 17
                 imgx+= 15
-
                 block=Object(x,y,0,imgx,21,14,8)
                 self.listBlock.append(Object(x,y,0,imgx,21,14,8))
 
@@ -126,7 +125,6 @@ class Game:
         else:
             if pyxel.btn(pyxel.KEY_SPACE) or pyxel.btn(pyxel.GAMEPAD1_BUTTON_START):
                 self.play=True
-                        
                         
     def draw(self):
         pyxel.cls(1)
