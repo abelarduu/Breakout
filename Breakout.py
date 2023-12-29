@@ -33,7 +33,7 @@ class Object:
         
 class Game:
     def __init__(self):
-        pyxel.init(100,100,"Breakout")
+        pyxel.init(100, 100, "Breakout")
         self.play= False
         #Objetos
         self.player= Object(pyxel.width/2 - 19/2, pyxel.height -11, 0, 8, 30, 19, 8)
@@ -125,6 +125,7 @@ class Game:
                     self.flip_ball(block)
                     block.destroy()
                     pyxel.play(0,0)
+                    
                     for n in range(6):
                         if block.imgx == (8-15)+(15*n):
                             self.player.scores+= (5*n)
@@ -134,12 +135,15 @@ class Game:
         else:
             if pyxel.btn(pyxel.KEY_SPACE) or pyxel.btn(pyxel.GAMEPAD1_BUTTON_START):
                 self.play=True
-                        
+
+
+            
     def draw(self):
         pyxel.cls(1)
         pyxel.blt(5, 0, 0, 7, 0, 100, 7)
         pyxel.blt(0, 0, 0, 0, 0, 7, 100)
         pyxel.blt(pyxel.height-7, 0, 0, 0, 0, -7, 100)
+
         
         self.ball.draw()
         self.player.draw()
@@ -148,6 +152,12 @@ class Game:
          
         if self.play: 
             pyxel.text(pyxel.width/2 - len(str(self.player.scores))/2 * pyxel.FONT_WIDTH, 1, str(self.player.scores), 7)
+            
+            if self.player.scores == 300 or self.ball.y > pyxel.height:
+                pyxel.blt(pyxel.width/2 - 50/2, pyxel.height/2 - 34/2, 0, 8, 46, 50, 34)
+                pyxel.text(pyxel.width/2 - (len("Total:")/2 * pyxel.FONT_WIDTH), pyxel.height/2 - pyxel.FONT_HEIGHT, "Total:", 7)
+                pyxel.text(pyxel.width/2 - (len(str(self.player.scores))/2 * pyxel.FONT_WIDTH), pyxel.height/2+2, str(self.player.scores), 7)
+                pyxel.text(pyxel.width/2 - (len("Press 'R'")/2 * pyxel.FONT_WIDTH), pyxel.height/2+20, "Press 'R'\nto return", 7)
         else:
             pyxel.blt(pyxel.width/2 - 63/2, pyxel.height/2 , 0, 8, 8, 63, 12)
             pyxel.text(pyxel.width/2 -len("press start")/2 * pyxel.FONT_WIDTH, pyxel.height/2 +13, "press start", pyxel.frame_count %16)
