@@ -6,7 +6,6 @@
 <div>
   <h3>Sobre o projeto</h3>
   <div>
-  <h4>🚧⚠️Em desenvolvimento...⚠️🚧</h4>
 
 </div>
 <div>
