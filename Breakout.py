@@ -1,6 +1,3 @@
-############
-# Breakout #
-############
 import pyxel
 
 class Object:
