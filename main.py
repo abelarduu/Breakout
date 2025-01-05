@@ -20,7 +20,7 @@ class Object:
             self.x += 2
         
         if up: 
-            self.y -= 2           
+            self.y -= 2 
             
         if down: 
             self.y += 2        
@@ -151,9 +151,11 @@ class Game:
         """Verifica interação a cada quadro."""
         if self.play:
             self.player.move(left= (pyxel.btn(pyxel.KEY_LEFT) or
-                                    pyxel.btn(pyxel.KEY_A)),
+                                    pyxel.btn(pyxel.KEY_A) or
+                                    pyxel.btn(pyxel.GAMEPAD1_BUTTON_DPAD_LEFT)),
                              right= pyxel.btn(pyxel.KEY_RIGHT) or
-                                    pyxel.btn(pyxel.KEY_D))
+                                    pyxel.btn(pyxel.KEY_D) or
+                                    pyxel.btn(pyxel.GAMEPAD1_BUTTON_DPAD_RIGHT))
                              
             self.ball.move(left= self.ball.eixX1, 
                            right= self.ball.eixX2,
@@ -161,21 +163,23 @@ class Game:
                            down= self.ball.eixY2)
 
             self.check_all_collisions()
-                        
+            
             #Game Over
             if (self.player.scores == 300 or
                 self.ball.y > pyxel.height):
                 
                 #Verificação para resetar
                 if (pyxel.btnr(pyxel.KEY_RETURN) or
-                    pyxel.btnr(pyxel.GAMEPAD1_BUTTON_START)):
+                    pyxel.btnr(pyxel.KEY_KP_ENTER) or
+                    pyxel.btnr(pyxel.GAMEPAD1_BUTTON_A)):
                     self.reset()
         
         #Menu Inicial
         else:
             #Verificação para inicialização do game
-            if (pyxel.btn(pyxel.KEY_RETURN) or
-                pyxel.btn(pyxel.GAMEPAD1_BUTTON_START)):
+            if (pyxel.btnr(pyxel.KEY_RETURN) or
+                pyxel.btnr(pyxel.KEY_KP_ENTER) or
+                pyxel.btnr(pyxel.GAMEPAD1_BUTTON_A)):
                 self.play = True
                 pyxel.play(0, 0)
 
